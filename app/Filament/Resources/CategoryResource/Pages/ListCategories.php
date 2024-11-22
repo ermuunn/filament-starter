@@ -54,9 +54,9 @@ class ListCategories extends ListRecords
             ->filters([
                 //
             ])
-            ->emptyStateHeading('Бүтээгдэхүүн олдсонгүй')
-            ->emptyStateDescription('Шинээр нэмэгдсэн бүтээгдэхүүн энд харагдана.')
-            ->emptyStateIcon('heroicon-s-cube')
+            ->emptyStateHeading('Ангилал олдсонгүй')
+            ->emptyStateDescription('Шинээр нэмэгдсэн ангилал энд харагдана.')
+            ->emptyStateIcon('heroicon-s-building-storefront')
             ->actions([
                 ActionGroup::make([
                     ViewAction::make()
