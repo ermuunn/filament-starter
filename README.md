@@ -45,6 +45,7 @@ This will generate sample data for `Customer`, `Product`, and `Category` models 
 9. Log in with the user you created in step 7 to access the admin panel.
 
 Congratulations! 🎉 You are now ready to start building your application with Filament.
+![panel](/public/images/admin-panel.png)
 
 ## Additional Notes
 ### API Endpoints:
