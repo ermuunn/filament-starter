@@ -18,6 +18,7 @@ The Filament Starter Kit v1.0 is built to help you make the most of Filament, sa
 - [x] Localized labels in Mongolian for a tailored experience.
 - [x] Ready-to-use Filament resource pages for managing your data.
 - [x] Pre-built "getAll" APIs for each model, using JSON middleware for clean JSON responses.
+- [x] A sample widget to display key statistics at a glance.
 
 Everything is set up and ready to use, so you can start building your application immediately!
 
@@ -56,6 +57,9 @@ The database seeders use Faker to generate realistic dummy data for your models.
   - **Customer Data**: Randomized customer names, emails, and phone numbers.
   - **Product Data**: Sample product names, prices, and stock information.
   - **Category Data**: Randomized category names.
+
+### Customization:
+You can customize the theme color, logo, icon, and navigation panel to fit your needs. Check the [Filament Themes documentation](https://filamentphp.com/docs/3.x/panels/themes) for details.
 
 ## Resources
 - [Filament Documentation](https://filamentphp.com/docs)
