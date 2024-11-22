@@ -1,4 +1,5 @@
 # Filament Starter Kit v1.0
+![thumbnail](/public/images/filament-starter-kit.png)
 
 ## What is Filament?
 [Filament](https://filamentphp.com/docs) is a powerful and easy-to-use admin panel framework for Laravel. It helps you build admin dashboards, manage data, and create custom tools with minimal effort.
