@@ -39,6 +39,7 @@ Update the `.env` file with your database credentials. (_e.g., DB_HOST, DB_DATAB
 6. Seed the database with dummy data: `php artisan db:seed`
 This will generate sample data for `Customer`, `Product`, and `Category` models using Faker.
 7. Create a new user to access the admin panel: `php artisan make:filament-user`
+8. Create a symbolic link to the storage directory: `php artisan storage:link`
 8. Start the development server: `php artisan serve` and visit `http://localhost:8000/admin/login` to access the Filament admin panel.
    (_Note: For an improved development experience, consider using Laravel Herd._)
 9. Log in with the user you created in step 7 to access the admin panel.
