@@ -29,7 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Zinc,
+                'primary' => Color::Gray,
             ])
             ->profile(isSimple: false)
             ->defaultThemeMode(ThemeMode::Light)
