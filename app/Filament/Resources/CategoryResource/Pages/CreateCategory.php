@@ -43,7 +43,7 @@ class CreateCategory extends CreateRecord
         return Notification::make()
             ->success()
             ->title('Амжилттай үүсгэлээ')
-            ->body('Ангилалыг амжилтаай үүсгэлээ');
+            ->body('Ангилалыг амжилттай үүсгэлээ');
     }
 
     public static ?string $title = 'Шинэ ангилал үүсгэх';

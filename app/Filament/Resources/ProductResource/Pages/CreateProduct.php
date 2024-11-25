@@ -42,7 +42,7 @@ class CreateProduct extends CreateRecord
         return Notification::make()
             ->success()
             ->title('Амжилттай үүсгэлээ')
-            ->body('Бүтээгдэхүүнийг амжилтаай үүсгэлээ');
+            ->body('Бүтээгдэхүүнийг амжилттай үүсгэлээ');
     }
 
     public static ?string $title = 'Шинэ бүтээгдэхүүн үүсгэх';

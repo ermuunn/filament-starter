@@ -42,7 +42,7 @@ class CreateCustomer extends CreateRecord
         return Notification::make()
             ->success()
             ->title('Амжилттай үүсгэлээ')
-            ->body('Хэрэглэгчийг амжилтаай үүсгэлээ');
+            ->body('Хэрэглэгчийг амжилттай үүсгэлээ');
     }
 
     public static ?string $title = 'Шинэ хэрэглэгч үүсгэх';
