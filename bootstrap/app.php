@@ -41,9 +41,11 @@ return Application::configure(basePath: dirname(__DIR__))
                 ], 400);
             }
 
-            return response()->json([
-                'success' => false,
-                'message' => $e->getMessage(),
-            ], 400);
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $e->getMessage(),
+                ], 400);
+            }
         });
     })->create();
