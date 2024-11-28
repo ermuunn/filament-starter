@@ -2,13 +2,17 @@
 
 namespace App\Filament\Resources\ProductResource\Pages;
 
+use App\Enum\Product\Status;
 use App\Filament\Resources\ProductResource;
 use Filament\Actions;
+use Filament\Resources\Components\Tab;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\{ ActionGroup, ViewAction, EditAction, DeleteAction };
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class ListProducts extends ListRecords
 {
@@ -22,6 +26,41 @@ class ListProducts extends ListRecords
             Actions\CreateAction::make()
                 ->label('Бүтээгдэхүүн шинээр нэмэх')
                 ->icon('heroicon-m-plus'),
+        ];
+    }
+
+    protected array $statusCounts = [];
+    public function getRequestStatusCounts(): array
+    {
+        return DB::table('products')
+            ->select('is_active', DB::raw('count(*) as statusCount'))
+            ->groupBy('is_active')
+            ->pluck('statusCount', 'is_active')
+            ->toArray();
+    }
+
+    public function getTabs(): array
+    {
+        $this->statusCounts = $this->getRequestStatusCounts();
+
+        return [
+            'all' => Tab::make('Бүгд')
+                ->modifyQueryUsing(function (Builder $query) {
+                    return $query;
+                })
+                ->badge(array_sum($this->statusCounts)),
+            'active' => Tab::make(Status::Active->getLabel())
+                ->modifyQueryUsing(function (Builder $query) {
+                    return $query->where('is_active', Status::Active->value);
+                })
+                ->badge($this->statusCounts[Status::Active->value] ?? 0)
+                ->badgeColor('success'),
+            'inactive' => Tab::make(Status::Inactive->getLabel())
+                ->modifyQueryUsing(function (Builder $query) {
+                    return $query->where('is_active', Status::Inactive->value);
+                })
+                ->badge($this->statusCounts[Status::Inactive->value] ?? 0)
+                ->badgeColor('danger'),
         ];
     }
 
