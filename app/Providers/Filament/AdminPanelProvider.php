@@ -2,12 +2,14 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\EditProfile;
 use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Auth\Register;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -34,7 +36,11 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Gray,
             ])
-            ->profile(isSimple: false)
+            ->profile(EditProfile::class)
+            ->userMenuItems([
+                'profile' => MenuItem::make()->label('Профайл засах'),
+                'logout' => MenuItem::make()->label('Гарах'),
+            ])
             ->defaultThemeMode(ThemeMode::Light)
             ->brandLogo(asset('images/filament.png'))
             ->brandLogoHeight('3rem')
