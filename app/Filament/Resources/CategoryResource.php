@@ -50,7 +50,7 @@ class CategoryResource extends Resource
                             ->size(TextEntry\TextEntrySize::Large),
                     ]),
                 RepeatableEntry::make('products')
-                    ->label('Ангилалд хамрагдахх бүтээгдэхүүн')
+                    ->label('Ангилалд хамрагдах бүтээгдэхүүн')
                     ->schema([
                         Group::make()
                             ->schema([

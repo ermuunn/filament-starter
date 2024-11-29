@@ -27,9 +27,4 @@ class Customer extends Model
     {
         return $this->last_name ? Str::upper(Str::substr($this->last_name,0,1)).".".Str::ucfirst($this->first_name) : Str::ucfirst($this->first_name);
     }
-
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
 }
