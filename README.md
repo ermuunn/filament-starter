@@ -1,4 +1,4 @@
-# Filament Starter Kit v1.0
+# Filament Starter Kit v1.1
 ![thumbnail](/public/images/filament-starter-kit.webp)
 
 ## What is Filament?
@@ -11,7 +11,7 @@
 - [x] **Flexible and Customizable:** Create custom tools and actions to fit your needs.
 - [x] **Saves Time:** Speeds up development so you can focus on your app’s features.
 
-The Filament Starter Kit v1.0 is built to help you make the most of Filament, saving you even more time with pre-built modules and a ready-to-use structure.
+The Filament Starter Kit v1.1 is built to help you make the most of Filament, saving you even more time with pre-built modules and a ready-to-use structure.
 
 ## Features in the Starter Kit
 - [x] Pre-built example models for Customer, Product, and Category, with relationships set up.

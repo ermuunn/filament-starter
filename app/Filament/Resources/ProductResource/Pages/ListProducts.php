@@ -89,10 +89,12 @@ class ListProducts extends ListRecords
                 TextColumn::make('price')
                     ->label('Үнэ')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->money('MNT'),
                 TextColumn::make('quantity')
                     ->label('Тоо ширхэг')
-                    ->sortable(),
+                    ->sortable()
+                    ->numeric(decimalPlaces: 0),
                 TextColumn::make('is_active')
                     ->label('Төлөв')
                     ->badge(),

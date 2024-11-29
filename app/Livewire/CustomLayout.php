@@ -3,7 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Product;
-use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Group as FormGroup;
+use Filament\Infolists\Components\Group as InfolistGroup;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -53,13 +54,17 @@ class CustomLayout extends Component implements HasForms, HasTable, HasInfolists
                             ->required(),
                         TextInput::make('description')
                             ->label('Дэлгэрэнгүй мэдээлэл'),
-                        Group::make()
+                        FormGroup::make()
                             ->schema([
                                 TextInput::make('price')
                                     ->label('Үнэ')
+                                    ->prefix('₮')
+                                    ->numeric()
                                     ->required(),
                                 TextInput::make('quantity')
                                     ->label('Тоо ширхэг')
+                                    ->numeric()
+                                    ->prefixIcon('heroicon-o-cube')
                                     ->required(),
                                 TextInput::make('category.name')
                                     ->label('Ангилал')
@@ -86,10 +91,12 @@ class CustomLayout extends Component implements HasForms, HasTable, HasInfolists
                     ->limit(40),
                 TextColumn::make('price')
                     ->label('Үнэ')
-                    ->sortable(),
+                    ->sortable()
+                    ->money('MNT'),
                 TextColumn::make('quantity')
                     ->label('Тоо ширхэг')
-                    ->sortable(),
+                    ->sortable()
+                    ->numeric(decimalPlaces: 0),
             ])
             ->heading('Төсөөтэй бараанууд')
             ->striped()
@@ -115,12 +122,17 @@ class CustomLayout extends Component implements HasForms, HasTable, HasInfolists
                             ->label('Бүтээгдэхүүний нэр'),
                         TextEntry::make('description')
                             ->label('Дэлгэрэнгүй мэдээлэл'),
-                        TextEntry::make('price')
-                            ->label('Үнэ'),
-                        TextEntry::make('quantity')
-                            ->label('Тоо ширхэг'),
-                        TextEntry::make('category.name')
-                            ->label('Ангилал'),
+                        InfolistGroup::make()
+                            ->schema([
+                                TextEntry::make('price')
+                                    ->label('Үнэ')
+                                    ->money('MNT'),
+                                TextEntry::make('quantity')
+                                    ->label('Тоо ширхэг')
+                                    ->numeric(decimalPlaces: 0),
+                                TextEntry::make('category.name')
+                                    ->label('Ангилал'),
+                            ])->columns(3),
                     ])
             ]);
     }

@@ -49,7 +49,7 @@ class EditProduct extends EditRecord
             ->body('Бүтээгдэхүүний мэдээллийг амжилттай шинэчиллээ');
     }
 
-    public static ?string $title = 'Хэрэглэгчийн мэдээллийг шинэчлэх';
+    public static ?string $title = 'Бүтээгдэхүүний мэдээллийг шинэчлэх';
 
     public function form(Form $form): Form
     {
@@ -70,7 +70,7 @@ class EditProduct extends EditRecord
                                 TextInput::make('price')
                                     ->label('Үнэ')
                                     ->required()
-                                    ->prefixIcon('heroicon-o-currency-dollar'),
+                                    ->prefix('₮'),
                                 TextInput::make('quantity')
                                     ->label('Тоо ширхэг')
                                     ->required()
