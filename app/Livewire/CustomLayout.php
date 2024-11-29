@@ -3,11 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Product;
-use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\Section as InfolistSection;
+use Filament\Forms\Components\Section as FormSection;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Concerns\InteractsWithInfolists;
 use Filament\Infolists\Contracts\HasInfolists;
@@ -44,20 +46,26 @@ class CustomLayout extends Component implements HasForms, HasTable, HasInfolists
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->label('Бүтээгдэхүүний нэр')
-                    ->required(),
-                TextInput::make('description')
-                    ->label('Дэлгэрэнгүй мэдээлэл'),
-                TextInput::make('price')
-                    ->label('Үнэ')
-                    ->required(),
-                TextInput::make('quantity')
-                    ->label('Тоо ширхэг')
-                    ->required(),
-                TextInput::make('category.name')
-                    ->label('Ангилал')
-                    ->required(),
+                FormSection::make('Мэдээллийн маягт')
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Бүтээгдэхүүний нэр')
+                            ->required(),
+                        TextInput::make('description')
+                            ->label('Дэлгэрэнгүй мэдээлэл'),
+                        Group::make()
+                            ->schema([
+                                TextInput::make('price')
+                                    ->label('Үнэ')
+                                    ->required(),
+                                TextInput::make('quantity')
+                                    ->label('Тоо ширхэг')
+                                    ->required(),
+                                TextInput::make('category.name')
+                                    ->label('Ангилал')
+                                    ->required(),
+                            ])->columns(3),
+                    ]),
             ])
             ->statePath('data');
     }
@@ -65,32 +73,25 @@ class CustomLayout extends Component implements HasForms, HasTable, HasInfolists
     public function table(Table $table): Table
     {
         return $table
-            ->query(Product::query())
+            ->query(Product::query()->where('category_id', $this->record->category_id))
             ->columns([
                 TextColumn::make('index')
                     ->rowIndex()
                     ->label('Д/д'),
                 TextColumn::make('name')
                     ->label('Бүтээгдэхүүний нэр')
-                    ->extraAttributes(['class' => 'font-semibold'])
-                    ->searchable()
-                    ->sortable(),
+                    ->extraAttributes(['class' => 'font-semibold']),
                 TextColumn::make('description')
                     ->label('Дэлгэрэнгүй мэдээлэл')
-                    ->limit(40)
-                    ->searchable(),
-                TextColumn::make('category.name')
-                    ->label('Ангилал')
-                    ->searchable()
-                    ->sortable(),
+                    ->limit(40),
                 TextColumn::make('price')
                     ->label('Үнэ')
-                    ->searchable()
                     ->sortable(),
                 TextColumn::make('quantity')
                     ->label('Тоо ширхэг')
                     ->sortable(),
             ])
+            ->heading('Төсөөтэй бараанууд')
             ->striped()
             ->filters([
                 //
@@ -108,7 +109,7 @@ class CustomLayout extends Component implements HasForms, HasTable, HasInfolists
         return $infolist
             ->record($this->record)
             ->schema([
-                Section::make('Ерөнхий мэдээлэл')
+                InfolistSection::make('Ерөнхий мэдээлэл')
                     ->schema([
                         TextEntry::make('name')
                             ->label('Бүтээгдэхүүний нэр'),

@@ -4,10 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Livewire\CustomLayout;
 use App\Models\Product;
 use Faker\Provider\Text;
 use Filament\Resources\Resource;
 use Filament\Infolists\Infolist;
+use Filament\Infolists\Components\Livewire;
 use Nette\Utils\Image;
 use Filament\Infolists\Components\{Group, ImageEntry, Section, TextEntry};
 use Filament\Tables;
@@ -43,38 +45,8 @@ class ProductResource extends Resource
     {
         return $infolist
             ->schema([
-                Section::make('Ерөнхий мэдээлэл')
-                    ->schema([
-                        ImageEntry::make('image')
-                            ->hiddenLabel()
-                            ->size(400),
-                        TextEntry::make('name')
-                            ->label('Бүтээгдэхүүний нэр')
-                            ->weight(FontWeight::Bold)
-                            ->size(TextEntry\TextEntrySize::Large),
-                        TextEntry::make('description')
-                            ->label('Дэлгэрэнгүй мэдээлэл')
-                            ->weight(FontWeight::Medium),
-                        Group::make()
-                            ->schema([
-                                TextEntry::make('price')
-                                    ->label('Үнэ')
-                                    ->icon('heroicon-o-currency-dollar')
-                                    ->iconColor('success')
-                                    ->weight(FontWeight::Bold)
-                                    ->size(TextEntry\TextEntrySize::Large)
-                                    ->color('success'),
-                                TextEntry::make('quantity')
-                                    ->label('Тоо ширхэг')
-                                    ->icon('heroicon-o-cube')
-                                    ->weight(FontWeight::Medium),
-                                TextEntry::make('is_active')
-                                    ->label('Төлөв')
-                                    ->badge()
-                                    ->weight(FontWeight::Medium),
-                            ])->columns(3),
-                    ]),
-            ]);
+                Livewire::make(CustomLayout::class)->columnSpan(12),
+            ])->columns(12);
     }
 
     public static function table(Table $table): Table
