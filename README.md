@@ -20,6 +20,7 @@ The Filament Starter Kit v1.0 is built to help you make the most of Filament, sa
 - [x] Ready-to-use Filament resource pages for managing your data.
 - [x] Pre-built "getAll" APIs for each model, using JSON middleware for clean JSON responses.
 - [x] A sample widget to display key statistics at a glance.
+- [x] Custom Livewire component that combines forms, tables, and infolists into one flexible component.
 
 Everything is set up and ready to use, so you can start building your application immediately!
 
